@@ -18,18 +18,18 @@ import retrofit2.http.Query
 
 interface ApiService {
 
-    @POST("/register")
+    @POST("register")
     fun register(
         @Body user: User
     ): Call<BasicResponse>
 
-    @POST("/login")
+    @POST("login")
     fun login(
         @Body user: User
     ): Call<LoginResponse>
 
     @Multipart
-    @POST("/stories")
+    @POST("stories")
     fun createStory(
         @Header("Authorization") authorization: String,
         @Part("description") description: String,
@@ -38,7 +38,7 @@ interface ApiService {
         @Part("lon") longitude: Float
     ): Call<BasicResponse>
 
-    @GET("/stories")
+    @GET("stories")
     fun getStories(
         @Header("Authorization") authorization: String,
         @Query("page") page: Int,
@@ -46,7 +46,7 @@ interface ApiService {
         @Query("location") location: Location? = Location.DISABLED
     ): Call<AllStoriesResponse>
 
-    @GET("/stories/{id}")
+    @GET("stories/{id}")
     fun getStoryById(
         @Header("Authorization") authorization: String,
         @Path("id") storyId: Int

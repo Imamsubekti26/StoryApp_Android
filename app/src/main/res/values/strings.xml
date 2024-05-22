@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Story App</string>
+    <string name="email">email</string>
+    <string name="name">name</string>
+    <string name="password">password</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="failed_to_register">failed to register</string>
+    <string name="failed_to_login">failed to login</string>
+    <string name="loading">Loading…</string>
 </resources>
