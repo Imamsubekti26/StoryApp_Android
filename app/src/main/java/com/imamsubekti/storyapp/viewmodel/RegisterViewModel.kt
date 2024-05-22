@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.imamsubekti.storyapp.entity.BasicResponse
-import com.imamsubekti.storyapp.entity.User
+import com.imamsubekti.storyapp.entity.RegisterRequest
 import com.imamsubekti.storyapp.network.ApiConfig
 import retrofit2.Call
 import retrofit2.Callback
@@ -18,7 +18,7 @@ class RegisterViewModel: ViewModel() {
     val status: LiveData<RegisterStatus> get() = _status
 
     fun register(name: String, email: String, password: String) {
-        val userData = User(
+        val registerRequestData = RegisterRequest(
             name = name,
             email = email,
             password = password
@@ -26,7 +26,7 @@ class RegisterViewModel: ViewModel() {
 
         _status.postValue(RegisterStatus.PROGRESS)
 
-        apiService.register(userData).enqueue(object: Callback<BasicResponse>{
+        apiService.register(registerRequestData).enqueue(object: Callback<BasicResponse>{
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                 Log.e("Registration Process", "checkRes: $response" )
                 if (response.isSuccessful && !response.body()?.error!!) {

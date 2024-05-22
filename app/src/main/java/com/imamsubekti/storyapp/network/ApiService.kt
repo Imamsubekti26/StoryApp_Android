@@ -3,8 +3,9 @@ package com.imamsubekti.storyapp.network
 import com.imamsubekti.storyapp.entity.AllStoriesResponse
 import com.imamsubekti.storyapp.entity.BasicResponse
 import com.imamsubekti.storyapp.entity.DetailStoryResponse
+import com.imamsubekti.storyapp.entity.LoginRequest
 import com.imamsubekti.storyapp.entity.LoginResponse
-import com.imamsubekti.storyapp.entity.User
+import com.imamsubekti.storyapp.entity.RegisterRequest
 import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.Body
@@ -20,12 +21,12 @@ interface ApiService {
 
     @POST("register")
     fun register(
-        @Body user: User
+        @Body registerRequest: RegisterRequest
     ): Call<BasicResponse>
 
     @POST("login")
     fun login(
-        @Body user: User
+        @Body loginRequest: LoginRequest
     ): Call<LoginResponse>
 
     @Multipart
