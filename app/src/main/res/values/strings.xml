@@ -8,4 +8,7 @@
     <string name="failed_to_register">failed to register</string>
     <string name="failed_to_login">failed to login</string>
     <string name="loading">Loading…</string>
+    <string name="welcome_msg">Welcome to Story App</string>
+    <string name="create_account">Create Account</string>
+    <string name="or">--- OR ---</string>
 </resources>
