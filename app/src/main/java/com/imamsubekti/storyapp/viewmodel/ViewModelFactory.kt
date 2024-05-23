@@ -12,6 +12,8 @@ class ViewModelFactory (private val pref: DataStoreRepository) : ViewModelProvid
             return LoginViewModel(pref) as T
         } else if (modelClass.isAssignableFrom(ListViewModel::class.java)) {
             return ListViewModel(pref) as T
+        } else if (modelClass.isAssignableFrom(DetailViewModel::class.java)) {
+            return DetailViewModel(pref) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }

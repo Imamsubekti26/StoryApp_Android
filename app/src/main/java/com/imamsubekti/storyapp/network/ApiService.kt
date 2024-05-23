@@ -50,7 +50,7 @@ interface ApiService {
     @GET("stories/{id}")
     fun getStoryById(
         @Header("Authorization") authorization: String,
-        @Path("id") storyId: Int
+        @Path("id") storyId: String
     ): Call<DetailStoryResponse>
 }
 

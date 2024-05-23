@@ -30,7 +30,7 @@ class StoryListAdapter(private val dataList: List<Story>): RecyclerView.Adapter<
             binding.storyCard.setOnClickListener {
                 val context = binding.storyCard.context
                 val toDetail = Intent(context, DetailActivity::class.java).apply {
-                    //putExtra(DetailActivity.USER_PROFILE, binding.userName.text.toString())
+                    putExtra("id_story", binding.storyId.text.toString())
                 }
                 context.startActivity(toDetail)
             }
@@ -38,6 +38,7 @@ class StoryListAdapter(private val dataList: List<Story>): RecyclerView.Adapter<
 
         @SuppressLint("SetTextI18n")
         fun bind(context: Context, story: Story) {
+            binding.storyId.text = story.id
             binding.imageOwner.text = "by: ${story.name}"
             Glide.with(context).load(story.photoUrl).into(binding.storyImage)
         }
