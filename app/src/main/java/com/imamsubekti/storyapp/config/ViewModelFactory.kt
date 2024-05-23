@@ -1,8 +1,11 @@
-package com.imamsubekti.storyapp.viewmodel
+package com.imamsubekti.storyapp.config
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.imamsubekti.storyapp.repository.DataStoreRepository
+import com.imamsubekti.storyapp.view.detail.DetailViewModel
+import com.imamsubekti.storyapp.view.list.ListViewModel
+import com.imamsubekti.storyapp.view.login.LoginViewModel
 import com.imamsubekti.storyapp.view.splash.SplashViewModel
 
 class ViewModelFactory (private val pref: DataStoreRepository) : ViewModelProvider.NewInstanceFactory() {

@@ -10,7 +10,7 @@ import com.imamsubekti.storyapp.repository.DataStoreRepository
 import com.imamsubekti.storyapp.repository.dataStore
 import com.imamsubekti.storyapp.view.list.ListActivity
 import com.imamsubekti.storyapp.view.welcome.WelcomeActivity
-import com.imamsubekti.storyapp.viewmodel.ViewModelFactory
+import com.imamsubekti.storyapp.config.ViewModelFactory
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {

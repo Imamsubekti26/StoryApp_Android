@@ -7,7 +7,7 @@ import com.bumptech.glide.Glide
 import com.imamsubekti.storyapp.databinding.ActivityDetailBinding
 import com.imamsubekti.storyapp.repository.DataStoreRepository
 import com.imamsubekti.storyapp.repository.dataStore
-import com.imamsubekti.storyapp.viewmodel.ViewModelFactory
+import com.imamsubekti.storyapp.config.ViewModelFactory
 
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding

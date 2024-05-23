@@ -18,9 +18,6 @@
             android:name=".view.welcome.WelcomeActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.MainActivity"
-            android:exported="false" />
-        <activity
             android:name=".view.list.ListActivity"
             android:exported="false" />
         <activity
