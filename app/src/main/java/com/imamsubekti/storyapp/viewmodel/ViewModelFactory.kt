@@ -10,8 +10,8 @@ class ViewModelFactory (private val pref: DataStoreRepository) : ViewModelProvid
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
             return LoginViewModel(pref) as T
-        } else if (modelClass.isAssignableFrom(RegisterViewModel::class.java)) {
-            return LoginViewModel(pref) as T
+        } else if (modelClass.isAssignableFrom(ListViewModel::class.java)) {
+            return ListViewModel(pref) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }
