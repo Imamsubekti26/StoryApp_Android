@@ -27,7 +27,7 @@
             android:name=".view.register.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.AddStoryActivity"
+            android:name=".view.create.CreateActivity"
             android:exported="false" />
         <activity
             android:name=".view.login.LoginActivity"
