@@ -1,4 +1,4 @@
-package com.imamsubekti.storyapp.viewmodel
+package com.imamsubekti.storyapp.view.detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

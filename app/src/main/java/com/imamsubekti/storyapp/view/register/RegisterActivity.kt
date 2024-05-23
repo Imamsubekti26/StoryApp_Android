@@ -1,4 +1,4 @@
-package com.imamsubekti.storyapp.ui
+package com.imamsubekti.storyapp.view.register
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.imamsubekti.storyapp.R
 import com.imamsubekti.storyapp.databinding.ActivityRegisterBinding
-import com.imamsubekti.storyapp.viewmodel.RegisterViewModel
+import com.imamsubekti.storyapp.view.login.LoginActivity
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding

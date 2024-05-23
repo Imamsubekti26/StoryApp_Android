@@ -1,4 +1,4 @@
-package com.imamsubekti.storyapp.ui
+package com.imamsubekti.storyapp.view.detail
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -7,7 +7,6 @@ import com.bumptech.glide.Glide
 import com.imamsubekti.storyapp.databinding.ActivityDetailBinding
 import com.imamsubekti.storyapp.repository.DataStoreRepository
 import com.imamsubekti.storyapp.repository.dataStore
-import com.imamsubekti.storyapp.viewmodel.DetailViewModel
 import com.imamsubekti.storyapp.viewmodel.ViewModelFactory
 
 class DetailActivity : AppCompatActivity() {

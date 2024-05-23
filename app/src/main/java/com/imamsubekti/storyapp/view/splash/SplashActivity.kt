@@ -8,10 +8,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.imamsubekti.storyapp.databinding.ActivitySplashBinding
 import com.imamsubekti.storyapp.repository.DataStoreRepository
 import com.imamsubekti.storyapp.repository.dataStore
-import com.imamsubekti.storyapp.ui.ListActivity
+import com.imamsubekti.storyapp.view.list.ListActivity
 import com.imamsubekti.storyapp.view.welcome.WelcomeActivity
 import com.imamsubekti.storyapp.viewmodel.ViewModelFactory
-import kotlinx.coroutines.delay
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package com.imamsubekti.storyapp.ui
+package com.imamsubekti.storyapp.view.login
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,7 +10,7 @@ import com.imamsubekti.storyapp.R
 import com.imamsubekti.storyapp.databinding.ActivityLoginBinding
 import com.imamsubekti.storyapp.repository.DataStoreRepository
 import com.imamsubekti.storyapp.repository.dataStore
-import com.imamsubekti.storyapp.viewmodel.LoginViewModel
+import com.imamsubekti.storyapp.view.list.ListActivity
 import com.imamsubekti.storyapp.viewmodel.ViewModelFactory
 
 class LoginActivity : AppCompatActivity() {

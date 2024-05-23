@@ -4,8 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.imamsubekti.storyapp.databinding.ActivityWelcomeBinding
-import com.imamsubekti.storyapp.ui.LoginActivity
-import com.imamsubekti.storyapp.ui.RegisterActivity
+import com.imamsubekti.storyapp.view.login.LoginActivity
+import com.imamsubekti.storyapp.view.register.RegisterActivity
 
 class WelcomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWelcomeBinding

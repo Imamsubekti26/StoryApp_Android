@@ -1,4 +1,4 @@
-package com.imamsubekti.storyapp.ui.adaptor
+package com.imamsubekti.storyapp.view.list
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.imamsubekti.storyapp.databinding.StoryCardBinding
 import com.imamsubekti.storyapp.entity.Story
-import com.imamsubekti.storyapp.ui.DetailActivity
+import com.imamsubekti.storyapp.view.detail.DetailActivity
 
 class StoryListAdapter(private val dataList: List<Story>): RecyclerView.Adapter<StoryListAdapter.StoryViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StoryViewHolder {

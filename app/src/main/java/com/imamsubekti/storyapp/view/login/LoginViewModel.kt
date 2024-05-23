@@ -1,6 +1,5 @@
-package com.imamsubekti.storyapp.viewmodel
+package com.imamsubekti.storyapp.view.login
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,8 +17,8 @@ import retrofit2.Response
 class LoginViewModel(private val pref: DataStoreRepository): ViewModel() {
     private val apiService = ApiConfig.getApiService()
 
-    private val _status = MutableLiveData<LoginViewModel.LoginStatus>()
-    val status: LiveData<LoginViewModel.LoginStatus> get() = _status
+    private val _status = MutableLiveData<LoginStatus>()
+    val status: LiveData<LoginStatus> get() = _status
 
     fun getToken(): LiveData<String> {
         return pref.getToken().asLiveData()

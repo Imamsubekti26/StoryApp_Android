@@ -1,4 +1,4 @@
-package com.imamsubekti.storyapp.ui
+package com.imamsubekti.storyapp.view.list
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,9 +9,7 @@ import com.imamsubekti.storyapp.R
 import com.imamsubekti.storyapp.databinding.ActivityListBinding
 import com.imamsubekti.storyapp.repository.DataStoreRepository
 import com.imamsubekti.storyapp.repository.dataStore
-import com.imamsubekti.storyapp.ui.adaptor.StoryListAdapter
 import com.imamsubekti.storyapp.view.welcome.WelcomeActivity
-import com.imamsubekti.storyapp.viewmodel.ListViewModel
 import com.imamsubekti.storyapp.viewmodel.ViewModelFactory
 
 class ListActivity : AppCompatActivity() {

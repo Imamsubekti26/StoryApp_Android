@@ -21,19 +21,19 @@
             android:name=".ui.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.ListActivity"
+            android:name=".view.list.ListActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.DetailActivity"
+            android:name=".view.detail.DetailActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.RegisterActivity"
+            android:name=".view.register.RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".ui.AddStoryActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.LoginActivity"
+            android:name=".view.login.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".view.splash.SplashActivity"
