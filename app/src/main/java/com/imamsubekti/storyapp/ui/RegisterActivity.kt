@@ -1,5 +1,6 @@
 package com.imamsubekti.storyapp.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -7,10 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.imamsubekti.storyapp.R
 import com.imamsubekti.storyapp.databinding.ActivityRegisterBinding
-import com.imamsubekti.storyapp.repository.DataStoreRepository
-import com.imamsubekti.storyapp.repository.dataStore
 import com.imamsubekti.storyapp.viewmodel.RegisterViewModel
-import com.imamsubekti.storyapp.viewmodel.ViewModelFactory
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
@@ -33,7 +31,9 @@ class RegisterActivity : AppCompatActivity() {
             when(it) {
                 RegisterViewModel.RegisterStatus.SUCCESS -> {
                     showLoading(false)
-                    Toast.makeText(this, "success", Toast.LENGTH_SHORT).show()
+                    val toLogin = Intent(this, LoginActivity::class.java)
+                    startActivity(toLogin)
+                    finish()
                 }
                 RegisterViewModel.RegisterStatus.FAILED -> {
                     showLoading(false)

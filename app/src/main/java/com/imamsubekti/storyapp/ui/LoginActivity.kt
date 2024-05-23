@@ -1,5 +1,6 @@
 package com.imamsubekti.storyapp.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -34,7 +35,9 @@ class LoginActivity : AppCompatActivity() {
             when(it) {
                 LoginViewModel.LoginStatus.SUCCESS -> {
                     showLoading(false)
-                    Toast.makeText(this, "success", Toast.LENGTH_SHORT).show()
+                    val toList = Intent(this, ListActivity::class.java)
+                    toList.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(toList)
                 }
                 LoginViewModel.LoginStatus.FAILED -> {
                     showLoading(false)
