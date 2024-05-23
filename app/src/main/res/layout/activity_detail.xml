@@ -7,16 +7,37 @@
     android:layout_height="match_parent"
     tools:context=".ui.DetailActivity">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/transparent"
+            app:title="@string/app_name"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:layout_scrollFlags="scroll|enterAlways" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
     <ImageView
         android:id="@+id/story_image"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
         android:contentDescription="@string/app_name"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/top_bar"
         app:layout_constraintVertical_bias="0.0"
         tools:src="@tools:sample/avatars" />
 
@@ -25,6 +46,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/loading"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/story_image"
         app:layout_constraintEnd_toEndOf="@id/story_image"
         app:layout_constraintTop_toBottomOf="@id/story_image"
@@ -38,6 +61,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/loading"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@id/story_image"
         app:layout_constraintEnd_toEndOf="@id/story_image"
         app:layout_constraintTop_toBottomOf="@id/image_owner"

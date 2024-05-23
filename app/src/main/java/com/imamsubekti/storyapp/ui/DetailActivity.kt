@@ -23,6 +23,10 @@ class DetailActivity : AppCompatActivity() {
 
         val storyId = intent.getStringExtra("id_story")
 
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        binding.toolbar.setNavigationOnClickListener { finish() }
+
         model.getToken().observe(this){
             model.updateDetail(it, storyId as String)
         }
