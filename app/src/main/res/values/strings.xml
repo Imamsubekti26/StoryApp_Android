@@ -11,4 +11,6 @@
     <string name="welcome_msg">Welcome to Story App</string>
     <string name="create_account">Create Account</string>
     <string name="or">--- OR ---</string>
+    <string name="logout">Logout</string>
+    <string name="new_story">New Story</string>
 </resources>

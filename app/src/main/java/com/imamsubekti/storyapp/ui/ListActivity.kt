@@ -1,13 +1,16 @@
 package com.imamsubekti.storyapp.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.imamsubekti.storyapp.R
 import com.imamsubekti.storyapp.databinding.ActivityListBinding
 import com.imamsubekti.storyapp.repository.DataStoreRepository
 import com.imamsubekti.storyapp.repository.dataStore
 import com.imamsubekti.storyapp.ui.adaptor.StoryListAdapter
+import com.imamsubekti.storyapp.view.welcome.WelcomeActivity
 import com.imamsubekti.storyapp.viewmodel.ListViewModel
 import com.imamsubekti.storyapp.viewmodel.ViewModelFactory
 
@@ -23,15 +26,37 @@ class ListActivity : AppCompatActivity() {
         val pref = DataStoreRepository.getInstance(application.dataStore)
         model = ViewModelProvider(this, ViewModelFactory(pref))[ListViewModel::class.java]
 
+        setupToolBar()
+
         val layoutManager = LinearLayoutManager(this)
         binding.rvUser.layoutManager = layoutManager
 
         model.getToken().observe(this){
-            model.updateList(it)
+            if (it.isNotEmpty()){
+                model.updateList(it)
+            }
         }
 
         model.listStory.observe(this){
             binding.rvUser.adapter = StoryListAdapter(it.listStory)
+        }
+    }
+
+    private fun setupToolBar() {
+        binding.toolbar.inflateMenu(R.menu.main_menu)
+        binding.toolbar.setOnMenuItemClickListener {
+            when(it.itemId) {
+                R.id.logout_button -> {
+                    model.removeToken()
+                    val toWelcome = Intent(this, WelcomeActivity::class.java)
+                    toWelcome.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(toWelcome)
+                    finish()
+                    true
+                }
+                else -> false
+            }
+
         }
     }
 }

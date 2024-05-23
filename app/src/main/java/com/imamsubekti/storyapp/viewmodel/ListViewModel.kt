@@ -4,9 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
 import com.imamsubekti.storyapp.entity.AllStoriesResponse
 import com.imamsubekti.storyapp.network.ApiConfig
 import com.imamsubekti.storyapp.repository.DataStoreRepository
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,6 +24,12 @@ class ListViewModel(private val pref: DataStoreRepository): ViewModel() {
 
     fun getToken(): LiveData<String> {
         return pref.getToken().asLiveData()
+    }
+
+    fun removeToken() {
+        viewModelScope.launch {
+            pref.setToken("")
+        }
     }
 
     fun updateList(token: String){

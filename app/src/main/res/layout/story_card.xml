@@ -8,18 +8,17 @@
     android:layout_gravity="center"
     android:layout_marginTop="4dp"
     android:layout_marginBottom="4dp"
+    android:paddingBottom="52dp"
     card_view:cardCornerRadius="4dp"
     >
 
     <ImageView
         android:id="@+id/story_image"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
         android:scaleType="centerCrop"
         card_view:layout_constraintTop_toTopOf="parent"
-        card_view:layout_constraintBottom_toBottomOf="parent"
         card_view:layout_constraintStart_toStartOf="parent"
-        card_view:layout_constraintEnd_toEndOf="parent"
         tools:src="@tools:sample/avatars"
         android:contentDescription="@string/app_name" />
 
@@ -28,6 +27,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/app_name"
+        android:textSize="20sp"
+        android:textStyle="bold"
         card_view:layout_constraintStart_toStartOf="@id/story_image"
         card_view:layout_constraintEnd_toEndOf="@id/story_image"
         card_view:layout_constraintTop_toBottomOf="@id/story_image"
@@ -43,14 +44,6 @@
         android:visibility="gone"
         card_view:layout_constraintTop_toTopOf="parent"
         card_view:layout_constraintStart_toStartOf="parent"
-        />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/black"
-        card_view:layout_constraintTop_toBottomOf="@id/image_owner"
-        android:layout_marginTop="24dp"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
