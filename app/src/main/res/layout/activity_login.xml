@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -7,60 +7,78 @@
     android:layout_height="match_parent"
     tools:context=".view.login.LoginActivity"
     android:orientation="vertical"
-    android:padding="24dp">
+    android:padding="56dp">
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="@string/login"
         android:textSize="24sp"
-        android:gravity="center"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/error_msg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/failed_to_login"
-        android:gravity="center"
-        android:padding="8dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="24dp"
         android:background="@color/design_default_color_error"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="@string/failed_to_login"
         android:textColor="@color/white"
         android:visibility="gone"
-        />
+        app:layout_constraintBottom_toTopOf="@+id/email_form"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <EditText
+
+    <com.imamsubekti.storyapp.view.shared.EmailInput
         android:id="@+id/email_form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
         android:hint="@string/email"
-        android:textSize="24sp"
         android:padding="8dp"
-        android:layout_marginBottom="8dp"
-        />
+        android:textSize="24sp"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView" />
 
-    <EditText
+    <com.imamsubekti.storyapp.view.shared.PasswordInput
         android:id="@+id/password_form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/password"
-        android:textSize="24sp"
         android:padding="8dp"
-        android:layout_marginBottom="8dp"
-        />
+        android:textSize="24sp"
+        android:inputType="textPassword"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_form" />
 
     <Button
         android:id="@+id/button_login_submit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/login"
-        />
+        android:layout_marginTop="32dp"
+        android:paddingVertical="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password_form" />
 
     <TextView
         android:id="@+id/token_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        />
+        android:visibility="gone"
+        tools:ignore="MissingConstraints" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
