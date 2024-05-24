@@ -42,7 +42,7 @@ class LoginActivity : AppCompatActivity() {
                 LoginViewModel.LoginStatus.FAILED -> {
                     showLoading(false)
                     binding.errorMsg.visibility = View.VISIBLE
-                    Toast.makeText(this, "failure", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, R.string.failed_to_login, Toast.LENGTH_SHORT).show()
                 }
                 LoginViewModel.LoginStatus.PROGRESS -> {
                     showLoading()

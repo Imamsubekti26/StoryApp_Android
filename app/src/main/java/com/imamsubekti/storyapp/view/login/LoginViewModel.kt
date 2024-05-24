@@ -42,7 +42,7 @@ class LoginViewModel(private val pref: DataStoreRepository): ViewModel() {
                 if (response.isSuccessful && !response.body()?.error!!) {
                     val token = response.body()?.loginResult?.token.toString()
                     _status.postValue(LoginStatus.SUCCESS)
-                    setToken(token as String)
+                    setToken(token)
                 } else {
                     _status.postValue(LoginStatus.FAILED)
                 }

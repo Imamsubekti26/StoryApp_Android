@@ -8,6 +8,7 @@ import android.util.Patterns
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.view.marginTop
 import androidx.core.view.setPadding
+import com.imamsubekti.storyapp.R
 
 class EmailInput @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
@@ -26,7 +27,7 @@ class EmailInput @JvmOverloads constructor(
     private fun validateEmail() {
         val email = text.toString()
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            error = "Invalid email format"
+            error = context.getString(R.string.email_err_msg)
         }
     }
 }

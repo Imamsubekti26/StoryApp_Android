@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.imamsubekti.storyapp.R
 import com.imamsubekti.storyapp.databinding.ActivityDetailBinding
 import com.imamsubekti.storyapp.repository.DataStoreRepository
 import com.imamsubekti.storyapp.repository.dataStore
@@ -31,8 +32,8 @@ class DetailActivity : AppCompatActivity() {
         }
 
         model.storyDetail.observe(this){
-            binding.imageOwner.text = it.story?.name ?: "owner not found"
-            binding.imageDescription.text = it.story?.description ?: "no description"
+            binding.imageOwner.text = it.story?.name ?: getString(R.string.no_owner)
+            binding.imageDescription.text = it.story?.description ?: getString(R.string.no_desc)
             Glide.with(this).load(it.story?.photoUrl).into(binding.storyImage)
         }
     }

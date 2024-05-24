@@ -28,7 +28,6 @@ class RegisterViewModel: ViewModel() {
 
         apiService.register(registerRequestData).enqueue(object: Callback<BasicResponse>{
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
-                Log.e("Registration Process", "checkRes: $response" )
                 if (response.isSuccessful && !response.body()?.error!!) {
                     _status.postValue(RegisterStatus.SUCCESS)
                 } else {

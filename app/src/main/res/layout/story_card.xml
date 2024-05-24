@@ -20,13 +20,13 @@
         card_view:layout_constraintTop_toTopOf="parent"
         card_view:layout_constraintStart_toStartOf="parent"
         tools:src="@tools:sample/avatars"
-        android:contentDescription="@string/app_name" />
+        android:contentDescription="@string/logo" />
 
     <TextView
         android:id="@+id/image_owner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/app_name"
+        android:text="@string/loading"
         android:textSize="20sp"
         android:textStyle="bold"
         card_view:layout_constraintStart_toStartOf="@id/story_image"

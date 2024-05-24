@@ -38,7 +38,7 @@ class RegisterActivity : AppCompatActivity() {
                 RegisterViewModel.RegisterStatus.FAILED -> {
                     showLoading(false)
                     binding.errorMsg.visibility = View.VISIBLE
-                    Toast.makeText(this, "failure", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, R.string.failed_to_register, Toast.LENGTH_SHORT).show()
                 }
                 RegisterViewModel.RegisterStatus.PROGRESS -> {
                     showLoading()

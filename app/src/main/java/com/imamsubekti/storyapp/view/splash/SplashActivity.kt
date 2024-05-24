@@ -25,7 +25,7 @@ class SplashActivity : AppCompatActivity() {
         model = ViewModelProvider(this, ViewModelFactory(pref))[SplashViewModel::class.java]
 
         model.getToken().observe(this){
-            val targetIntent = if (it == "") {
+            val targetIntent = if (it.isEmpty()) {
                 Intent(this, WelcomeActivity::class.java)
             } else {
                 Intent(this, ListActivity::class.java)

@@ -13,4 +13,9 @@
     <string name="or">--- OR ---</string>
     <string name="logout">Logout</string>
     <string name="new_story">New Story</string>
+    <string name="logo">Logo</string>
+    <string name="no_owner">owner not found</string>
+    <string name="no_desc">no description</string>
+    <string name="email_err_msg">Invalid email format</string>
+    <string name="passwd_err_msg">Password must be at least 8 characters</string>
 </resources>

@@ -6,6 +6,7 @@ import android.text.InputType
 import android.text.TextWatcher
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatEditText
+import com.imamsubekti.storyapp.R
 
 class PasswordInput @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
@@ -24,7 +25,7 @@ class PasswordInput @JvmOverloads constructor(
     private fun validatePassword() {
         val password = text.toString()
         if (password.length < 8) {
-            error = "Password must be at least 8 characters"
+            error = context.getString(R.string.passwd_err_msg)
         }
     }
 }
