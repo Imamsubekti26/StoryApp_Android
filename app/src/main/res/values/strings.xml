@@ -18,4 +18,7 @@
     <string name="no_desc">no description</string>
     <string name="email_err_msg">Invalid email format</string>
     <string name="passwd_err_msg">Password must be at least 8 characters</string>
+    <string name="gallery">gallery</string>
+    <string name="describe">describe your picture:</string>
+    <string name="add_new_story">Add New Story</string>
 </resources>

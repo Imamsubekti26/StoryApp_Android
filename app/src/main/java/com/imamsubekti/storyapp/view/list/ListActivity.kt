@@ -11,6 +11,7 @@ import com.imamsubekti.storyapp.repository.DataStoreRepository
 import com.imamsubekti.storyapp.repository.dataStore
 import com.imamsubekti.storyapp.view.welcome.WelcomeActivity
 import com.imamsubekti.storyapp.config.ViewModelFactory
+import com.imamsubekti.storyapp.view.create.CreateActivity
 
 class ListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityListBinding
@@ -50,6 +51,11 @@ class ListActivity : AppCompatActivity() {
                     toWelcome.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(toWelcome)
                     finish()
+                    true
+                }
+                R.id.add_button -> {
+                    val toAdd = Intent(this, CreateActivity::class.java)
+                    startActivity(toAdd)
                     true
                 }
                 else -> false

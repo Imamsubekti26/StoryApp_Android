@@ -3,6 +3,7 @@ package com.imamsubekti.storyapp.config
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.imamsubekti.storyapp.repository.DataStoreRepository
+import com.imamsubekti.storyapp.view.create.CreateViewModel
 import com.imamsubekti.storyapp.view.detail.DetailViewModel
 import com.imamsubekti.storyapp.view.list.ListViewModel
 import com.imamsubekti.storyapp.view.login.LoginViewModel
@@ -20,6 +21,8 @@ class ViewModelFactory (private val pref: DataStoreRepository) : ViewModelProvid
             return ListViewModel(pref) as T
         } else if (modelClass.isAssignableFrom(DetailViewModel::class.java)) {
             return DetailViewModel(pref) as T
+        } else if (modelClass.isAssignableFrom(CreateViewModel::class.java)) {
+            return CreateViewModel(pref) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }
