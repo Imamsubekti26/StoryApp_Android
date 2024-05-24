@@ -70,12 +70,13 @@
         app:layout_constraintTop_toBottomOf="@+id/text_describe">
 
         <EditText
-            android:id="@+id/edit_text"
+            android:id="@+id/text_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text|textMultiLine"
             android:gravity="top"
-            android:autofillHints="" />
+            android:autofillHints=""
+            tools:ignore="LabelFor" />
 
     </ScrollView>
 

@@ -21,4 +21,5 @@
     <string name="gallery">gallery</string>
     <string name="describe">describe your picture:</string>
     <string name="add_new_story">Add New Story</string>
+    <string name="upload_image_first">Please insert image file first</string>
 </resources>

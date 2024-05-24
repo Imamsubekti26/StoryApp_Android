@@ -7,6 +7,7 @@ import com.imamsubekti.storyapp.entity.LoginRequest
 import com.imamsubekti.storyapp.entity.LoginResponse
 import com.imamsubekti.storyapp.entity.RegisterRequest
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -33,10 +34,10 @@ interface ApiService {
     @POST("stories")
     fun createStory(
         @Header("Authorization") authorization: String,
-        @Part("description") description: String,
-        @Part("photo") photo: MultipartBody.Part,
-        @Part("lat") latitude: Float,
-        @Part("lon") longitude: Float
+        @Part("description") description: RequestBody,
+        @Part photo: MultipartBody.Part,
+        @Part("lat") latitude: Float? = null,
+        @Part("lon") longitude: Float? = null
     ): Call<BasicResponse>
 
     @GET("stories")
