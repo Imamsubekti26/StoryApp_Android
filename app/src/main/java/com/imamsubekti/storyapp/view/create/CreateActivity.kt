@@ -1,6 +1,5 @@
 package com.imamsubekti.storyapp.view.create
 
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -10,11 +9,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.imamsubekti.storyapp.R
-import com.imamsubekti.storyapp.config.ViewModelFactory
+import com.imamsubekti.storyapp.ViewModelFactory
 import com.imamsubekti.storyapp.databinding.ActivityCreateBinding
 import com.imamsubekti.storyapp.helper.ImageTransform
-import com.imamsubekti.storyapp.repository.DataStoreRepository
-import com.imamsubekti.storyapp.repository.dataStore
 
 class CreateActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCreateBinding
@@ -27,8 +24,7 @@ class CreateActivity : AppCompatActivity() {
         binding = ActivityCreateBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val pref = DataStoreRepository.getInstance(application.dataStore)
-        model = ViewModelProvider(this, ViewModelFactory(pref) )[CreateViewModel::class.java]
+        model = ViewModelProvider(this, ViewModelFactory.getInstance(this))[CreateViewModel::class.java]
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

@@ -28,7 +28,7 @@ class ListViewModel(private val pref: DataStoreRepository): ViewModel() {
 
     fun removeToken() {
         viewModelScope.launch {
-            pref.setToken("")
+            pref.logout()
         }
     }
 

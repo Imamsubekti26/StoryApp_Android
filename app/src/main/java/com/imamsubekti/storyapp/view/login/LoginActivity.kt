@@ -8,10 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.imamsubekti.storyapp.R
 import com.imamsubekti.storyapp.databinding.ActivityLoginBinding
-import com.imamsubekti.storyapp.repository.DataStoreRepository
-import com.imamsubekti.storyapp.repository.dataStore
 import com.imamsubekti.storyapp.view.list.ListActivity
-import com.imamsubekti.storyapp.config.ViewModelFactory
+import com.imamsubekti.storyapp.ViewModelFactory
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -21,8 +19,7 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val pref = DataStoreRepository.getInstance(application.dataStore)
-        model = ViewModelProvider(this, ViewModelFactory(pref))[LoginViewModel::class.java]
+        model = ViewModelProvider(this, ViewModelFactory.getInstance(this))[LoginViewModel::class.java]
 
         binding.buttonLoginSubmit.setOnClickListener {
             val emailField = binding.emailForm.text.toString()

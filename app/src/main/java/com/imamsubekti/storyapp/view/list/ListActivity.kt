@@ -7,10 +7,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.imamsubekti.storyapp.R
 import com.imamsubekti.storyapp.databinding.ActivityListBinding
-import com.imamsubekti.storyapp.repository.DataStoreRepository
-import com.imamsubekti.storyapp.repository.dataStore
 import com.imamsubekti.storyapp.view.welcome.WelcomeActivity
-import com.imamsubekti.storyapp.config.ViewModelFactory
+import com.imamsubekti.storyapp.ViewModelFactory
 import com.imamsubekti.storyapp.view.create.CreateActivity
 
 class ListActivity : AppCompatActivity() {
@@ -22,8 +20,7 @@ class ListActivity : AppCompatActivity() {
         binding = ActivityListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val pref = DataStoreRepository.getInstance(application.dataStore)
-        model = ViewModelProvider(this, ViewModelFactory(pref))[ListViewModel::class.java]
+        model = ViewModelProvider(this, ViewModelFactory.getInstance(this))[ListViewModel::class.java]
 
         setupToolBar()
 

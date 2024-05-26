@@ -6,9 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.imamsubekti.storyapp.R
 import com.imamsubekti.storyapp.databinding.ActivityDetailBinding
-import com.imamsubekti.storyapp.repository.DataStoreRepository
-import com.imamsubekti.storyapp.repository.dataStore
-import com.imamsubekti.storyapp.config.ViewModelFactory
+import com.imamsubekti.storyapp.ViewModelFactory
 
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
@@ -18,8 +16,7 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val pref = DataStoreRepository.getInstance(application.dataStore)
-        model = ViewModelProvider(this, ViewModelFactory(pref) )[DetailViewModel::class.java]
+        model = ViewModelProvider(this, ViewModelFactory.getInstance(this))[DetailViewModel::class.java]
 
         val storyId = intent.getStringExtra("id_story")
 

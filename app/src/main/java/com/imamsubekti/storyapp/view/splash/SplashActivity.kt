@@ -6,11 +6,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.imamsubekti.storyapp.databinding.ActivitySplashBinding
-import com.imamsubekti.storyapp.repository.DataStoreRepository
-import com.imamsubekti.storyapp.repository.dataStore
 import com.imamsubekti.storyapp.view.list.ListActivity
 import com.imamsubekti.storyapp.view.welcome.WelcomeActivity
-import com.imamsubekti.storyapp.config.ViewModelFactory
+import com.imamsubekti.storyapp.ViewModelFactory
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
@@ -21,8 +19,7 @@ class SplashActivity : AppCompatActivity() {
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val pref = DataStoreRepository.getInstance(application.dataStore)
-        model = ViewModelProvider(this, ViewModelFactory(pref))[SplashViewModel::class.java]
+        model = ViewModelProvider(this, ViewModelFactory.getInstance(this))[SplashViewModel::class.java]
 
         model.getToken().observe(this){
             val targetIntent = if (it.isEmpty()) {

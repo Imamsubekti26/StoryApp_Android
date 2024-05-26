@@ -13,49 +13,42 @@ import kotlinx.coroutines.flow.map
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 class DataStoreRepository private constructor(private val dataStore: DataStore<Preferences>){
-    private val theme = booleanPreferencesKey("theme_setting")
-    private val lang = booleanPreferencesKey("language_setting")
-    private val token = stringPreferencesKey("bearer_token")
-
-    fun getTheme(): Flow<Boolean> {
-        return dataStore.data.map { preferences ->
-            preferences[theme] ?: false
-        }
-    }
-
-    suspend fun setTheme(isDarkModeActive: Boolean) {
-        dataStore.edit { preferences ->
-            preferences[theme] = isDarkModeActive
-        }
-    }
-
     fun getLang(): Flow<Boolean> {
         return dataStore.data.map { preferences ->
-            preferences[lang] ?: false
+            preferences[LANG] ?: false
         }
     }
 
     suspend fun setLang(isEnglish: Boolean) {
         dataStore.edit { preferences ->
-            preferences[lang] = isEnglish
+            preferences[LANG] = isEnglish
         }
     }
 
     fun getToken(): Flow<String> {
         return dataStore.data.map { preferences ->
-            preferences[token] ?: ""
+            preferences[BEARER_TOKEN] ?: ""
         }
     }
 
     suspend fun setToken(tokenString: String) {
         dataStore.edit { preferences ->
-            preferences[token] = tokenString
+            preferences[BEARER_TOKEN] = tokenString
+        }
+    }
+
+    suspend fun logout() {
+        dataStore.edit { preference ->
+            preference.clear()
         }
     }
 
     companion object {
         @Volatile
         private var INSTANCE: DataStoreRepository? = null
+
+        private val BEARER_TOKEN = stringPreferencesKey("bearer_token")
+        private val LANG = booleanPreferencesKey("language_setting")
 
         fun getInstance(dataStore: DataStore<Preferences>): DataStoreRepository {
             return INSTANCE ?: synchronized(this) {

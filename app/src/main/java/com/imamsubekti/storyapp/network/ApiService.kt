@@ -53,9 +53,9 @@ interface ApiService {
         @Header("Authorization") authorization: String,
         @Path("id") storyId: String
     ): Call<DetailStoryResponse>
-}
 
-enum class Location(val value: Int) {
-    DISABLED(0),
-    ENABLED(1)
+    enum class Location(val value: Int) {
+        DISABLED(0),
+        ENABLED(1)
+    }
 }
