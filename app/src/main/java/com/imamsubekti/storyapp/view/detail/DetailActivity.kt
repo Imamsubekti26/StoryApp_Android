@@ -18,16 +18,26 @@ class DetailActivity : AppCompatActivity() {
 
         model = ViewModelProvider(this, ViewModelFactory.getInstance(this))[DetailViewModel::class.java]
 
-        val storyId = intent.getStringExtra("id_story")
+        setupActionBar()
+        getDetailStory()
+        attachDataIntoView()
+    }
 
+    private fun setupActionBar(){
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding.toolbar.setNavigationOnClickListener { finish() }
+    }
+
+    private fun getDetailStory(){
+        val storyId = intent.getStringExtra("id_story")
 
         model.getToken().observe(this){
             model.updateDetail(it, storyId as String)
         }
+    }
 
+    private fun attachDataIntoView(){
         model.storyDetail.observe(this){
             binding.imageOwner.text = it.story?.name ?: getString(R.string.no_owner)
             binding.imageDescription.text = it.story?.description ?: getString(R.string.no_desc)

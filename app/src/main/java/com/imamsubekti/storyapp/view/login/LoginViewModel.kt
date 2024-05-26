@@ -3,7 +3,6 @@ package com.imamsubekti.storyapp.view.login
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.imamsubekti.storyapp.entity.LoginRequest
 import com.imamsubekti.storyapp.entity.LoginResponse
@@ -20,9 +19,6 @@ class LoginViewModel(private val pref: DataStoreRepository): ViewModel() {
     private val _status = MutableLiveData<LoginStatus>()
     val status: LiveData<LoginStatus> get() = _status
 
-    fun getToken(): LiveData<String> {
-        return pref.getToken().asLiveData()
-    }
     private fun setToken(token: String){
         viewModelScope.launch {
             pref.setToken(token)

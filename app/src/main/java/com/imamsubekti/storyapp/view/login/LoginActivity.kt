@@ -21,13 +21,20 @@ class LoginActivity : AppCompatActivity() {
 
         model = ViewModelProvider(this, ViewModelFactory.getInstance(this))[LoginViewModel::class.java]
 
+        setupAction()
+        observeResponse()
+    }
+
+    private fun setupAction(){
         binding.buttonLoginSubmit.setOnClickListener {
-            val emailField = binding.emailForm.text.toString()
-            val passwordField = binding.passwordForm.text.toString()
-
-            model.login(emailField, passwordField)
+            model.login(
+                email = binding.emailForm.text.toString(),
+                password = binding.passwordForm.text.toString()
+            )
         }
+    }
 
+    private fun observeResponse(){
         model.status.observe(this){
             when(it) {
                 LoginViewModel.LoginStatus.SUCCESS -> {
@@ -44,14 +51,8 @@ class LoginActivity : AppCompatActivity() {
                 LoginViewModel.LoginStatus.PROGRESS -> {
                     showLoading()
                 }
-                else -> {
-                    // do nothing
-                }
+                else -> { }
             }
-        }
-
-        model.getToken().observe(this){
-            binding.tokenField.text = it
         }
     }
 

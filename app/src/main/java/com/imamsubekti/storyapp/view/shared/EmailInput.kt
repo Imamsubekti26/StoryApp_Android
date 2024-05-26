@@ -6,8 +6,6 @@ import android.text.TextWatcher
 import android.util.AttributeSet
 import android.util.Patterns
 import androidx.appcompat.widget.AppCompatEditText
-import androidx.core.view.marginTop
-import androidx.core.view.setPadding
 import com.imamsubekti.storyapp.R
 
 class EmailInput @JvmOverloads constructor(

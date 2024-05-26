@@ -23,19 +23,8 @@ class ListActivity : AppCompatActivity() {
         model = ViewModelProvider(this, ViewModelFactory.getInstance(this))[ListViewModel::class.java]
 
         setupToolBar()
-
-        val layoutManager = LinearLayoutManager(this)
-        binding.rvUser.layoutManager = layoutManager
-
-        model.getToken().observe(this){
-            if (it.isNotEmpty()){
-                model.updateList(it)
-            }
-        }
-
-        model.listStory.observe(this){
-            binding.rvUser.adapter = StoryListAdapter(it.listStory)
-        }
+        getStoryList()
+        setupRecycleView()
     }
 
     private fun setupToolBar() {
@@ -58,6 +47,23 @@ class ListActivity : AppCompatActivity() {
                 else -> false
             }
 
+        }
+    }
+
+    private fun getStoryList(){
+        model.getToken().observe(this){
+            if (it.isNotEmpty()){
+                model.updateList(it)
+            }
+        }
+    }
+
+    private fun setupRecycleView(){
+        val layoutManager = LinearLayoutManager(this)
+        binding.rvUser.layoutManager = layoutManager
+
+        model.listStory.observe(this){
+            binding.rvUser.adapter = StoryListAdapter(it.listStory)
         }
     }
 }

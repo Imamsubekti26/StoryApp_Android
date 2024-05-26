@@ -20,13 +20,21 @@ class RegisterActivity : AppCompatActivity() {
 
         model = ViewModelProvider(this)[RegisterViewModel::class.java]
 
-        binding.buttonRegisterSubmit.setOnClickListener {
-            val nameField = binding.nameForm.text.toString()
-            val emailField = binding.emailForm.text.toString()
-            val passwordField = binding.passwordForm.text.toString()
-            model.register(nameField, emailField, passwordField)
-        }
+        setupAction()
+        observeResponse()
+    }
 
+    private fun setupAction() {
+        binding.buttonRegisterSubmit.setOnClickListener {
+            model.register(
+                name = binding.nameForm.text.toString(),
+                email = binding.emailForm.text.toString(),
+                password = binding.passwordForm.text.toString()
+            )
+        }
+    }
+
+    private fun observeResponse(){
         model.status.observe(this) {
             when(it) {
                 RegisterViewModel.RegisterStatus.SUCCESS -> {
@@ -43,9 +51,7 @@ class RegisterActivity : AppCompatActivity() {
                 RegisterViewModel.RegisterStatus.PROGRESS -> {
                     showLoading()
                 }
-                else -> {
-                    // do nothing
-                }
+                else -> { }
             }
         }
     }

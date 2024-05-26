@@ -26,12 +26,12 @@ class CreateActivity : AppCompatActivity() {
 
         model = ViewModelProvider(this, ViewModelFactory.getInstance(this))[CreateViewModel::class.java]
 
-        setSupportActionBar(binding.toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        binding.toolbar.setNavigationOnClickListener { finish() }
+        setupActionBar()
 
         binding.galleryButton.setOnClickListener { startGallery() }
         binding.buttonSubmitNewStory.setOnClickListener { uploadImage() }
+
+        observeResponse()
 
         model.currentImageUri.observe(this){
             Log.d("Image URI", "showImage: $it")
@@ -39,9 +39,23 @@ class CreateActivity : AppCompatActivity() {
             binding.previewImageView.setImageURI(it)
         }
 
+        model.getToken().observe(this){
+            token = it
+        }
+    }
+
+    private fun setupActionBar(){
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        binding.toolbar.setNavigationOnClickListener { finish() }
+    }
+
+    private fun observeResponse(){
         model.status.observe(this){
             when(it) {
-                CreateViewModel.CreateStatus.SUCCESS -> { finish() }
+                CreateViewModel.CreateStatus.SUCCESS -> {
+                    finish()
+                }
                 CreateViewModel.CreateStatus.FAILED -> {
                     Toast.makeText(this, R.string.failed_to_login, Toast.LENGTH_SHORT).show()
                     binding.buttonSubmitNewStory.text = getString(R.string.add_new_story)
@@ -51,10 +65,6 @@ class CreateActivity : AppCompatActivity() {
                 }
                 else -> { }
             }
-        }
-
-        model.getToken().observe(this){
-            token = it
         }
     }
 
