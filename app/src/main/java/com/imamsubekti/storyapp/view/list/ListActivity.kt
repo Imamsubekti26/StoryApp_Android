@@ -10,6 +10,7 @@ import com.imamsubekti.storyapp.databinding.ActivityListBinding
 import com.imamsubekti.storyapp.view.welcome.WelcomeActivity
 import com.imamsubekti.storyapp.ViewModelFactory
 import com.imamsubekti.storyapp.view.create.CreateActivity
+import com.imamsubekti.storyapp.view.maps.MapsActivity
 
 class ListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityListBinding
@@ -23,19 +24,8 @@ class ListActivity : AppCompatActivity() {
         model = ViewModelProvider(this, ViewModelFactory.getInstance(this))[ListViewModel::class.java]
 
         setupToolBar()
-
-        val layoutManager = LinearLayoutManager(this)
-        binding.rvUser.layoutManager = layoutManager
-
-        model.getToken().observe(this){
-            if (it.isNotEmpty()){
-                model.updateList(it)
-            }
-        }
-
-        model.listStory.observe(this){
-            binding.rvUser.adapter = StoryListAdapter(it.listStory)
-        }
+        getStoryList()
+        setupRecycleView()
     }
 
     private fun setupToolBar() {
@@ -50,6 +40,11 @@ class ListActivity : AppCompatActivity() {
                     finish()
                     true
                 }
+                R.id.gmaps_button -> {
+                    val toMaps = Intent(this, MapsActivity::class.java)
+                    startActivity(toMaps)
+                    true
+                }
                 R.id.add_button -> {
                     val toAdd = Intent(this, CreateActivity::class.java)
                     startActivity(toAdd)
@@ -58,6 +53,23 @@ class ListActivity : AppCompatActivity() {
                 else -> false
             }
 
+        }
+    }
+
+    private fun getStoryList(){
+        model.getToken().observe(this){
+            if (it.isNotEmpty()){
+                model.updateList(it)
+            }
+        }
+    }
+
+    private fun setupRecycleView(){
+        val layoutManager = LinearLayoutManager(this)
+        binding.rvUser.layoutManager = layoutManager
+
+        model.listStory.observe(this){
+            binding.rvUser.adapter = StoryListAdapter(it.listStory)
         }
     }
 }

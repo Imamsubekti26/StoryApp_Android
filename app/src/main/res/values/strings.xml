@@ -23,4 +23,10 @@
     <string name="add_new_story">Add New Story</string>
     <string name="upload_image_first">Please insert image file first</string>
     <string name="slogan">Share your moments and show the world who you are</string>
+    <string name="google_maps">Google Maps</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="normal_type">Normal</string>
+    <string name="satellite_type">Satellite</string>
+    <string name="terrain_type">Terrain</string>
+    <string name="hybrid_type">Hybrid</string>
 </resources>

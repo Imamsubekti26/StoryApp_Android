@@ -8,6 +8,12 @@
         app:showAsAction="ifRoom" />
 
     <item
+        android:id="@+id/gmaps_button"
+        android:icon="@drawable/ic_map"
+        android:title="@string/google_maps"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/logout_button"
         android:icon="@drawable/ic_exit"
         android:title="@string/logout"

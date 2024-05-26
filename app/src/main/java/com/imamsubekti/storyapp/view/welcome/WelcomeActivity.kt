@@ -17,6 +17,11 @@ class WelcomeActivity : AppCompatActivity() {
         binding = ActivityWelcomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setupAction()
+        playAnimation()
+    }
+
+    private fun setupAction(){
         binding.registerButton.setOnClickListener {
             val toRegister = Intent(this, RegisterActivity::class.java)
             startActivity(toRegister)
@@ -26,8 +31,6 @@ class WelcomeActivity : AppCompatActivity() {
             val toRegister = Intent(this, LoginActivity::class.java)
             startActivity(toRegister)
         }
-
-        playAnimation()
     }
 
     private fun playAnimation() {
