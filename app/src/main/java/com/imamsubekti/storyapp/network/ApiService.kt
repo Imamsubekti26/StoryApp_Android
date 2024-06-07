@@ -45,7 +45,7 @@ interface ApiService {
         @Header("Authorization") authorization: String,
         @Query("page") page: Int,
         @Query("size") size: Int,
-        @Query("location") location: Location? = Location.DISABLED
+        @Query("location") location: Int? = 0
     ): Call<AllStoriesResponse>
 
     @GET("stories/{id}")
@@ -53,9 +53,4 @@ interface ApiService {
         @Header("Authorization") authorization: String,
         @Path("id") storyId: String
     ): Call<DetailStoryResponse>
-
-    enum class Location(val value: Int) {
-        DISABLED(0),
-        ENABLED(1)
-    }
 }

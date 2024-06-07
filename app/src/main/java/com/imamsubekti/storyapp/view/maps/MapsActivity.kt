@@ -12,6 +12,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.imamsubekti.storyapp.R
 import com.imamsubekti.storyapp.ViewModelFactory
 import com.imamsubekti.storyapp.databinding.ActivityMapsBinding
+import com.imamsubekti.storyapp.entity.AllStoriesResponse
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var binding: ActivityMapsBinding
@@ -27,17 +28,24 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         model = ViewModelProvider(this, ViewModelFactory.getInstance(this))[MapsViewModel::class.java]
 
         setupActionBar()
-
-        val mapFragment = supportFragmentManager.findFragmentById(R.id.map_fragment) as SupportMapFragment
-        mapFragment.getMapAsync(this)
+        renderMapToFragment()
+        getStoryList()
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        model.listStory.observe(this){
+            attachDataToMaps(it)
+
+            val firstLatLng = LatLng(it.listStory[0].lat as Double, it.listStory[0].lon as Double)
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(firstLatLng, 6f))
+        }
+    }
+
+    private fun renderMapToFragment(){
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.map_fragment) as SupportMapFragment
+        mapFragment.getMapAsync(this)
     }
 
     private fun setupActionBar(){
@@ -65,6 +73,21 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     else -> false
                 }
             }
+        }
+    }
+
+    private fun getStoryList(){
+        model.getToken().observe(this){
+            if (it.isNotEmpty()){
+                model.updateList(it)
+            }
+        }
+    }
+
+    private fun attachDataToMaps(story: AllStoriesResponse){
+        story.listStory.forEach{
+            val latLng = LatLng(it.lat as Double, it.lon as Double)
+            mMap.addMarker(MarkerOptions().position(latLng).title(it.name))
         }
     }
 }
