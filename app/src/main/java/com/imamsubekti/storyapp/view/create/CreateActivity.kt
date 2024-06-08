@@ -130,7 +130,6 @@ class CreateActivity : AppCompatActivity() {
     private fun getMyLastLocation() {
         if (checkPermission(Manifest.permission.ACCESS_FINE_LOCATION) && checkPermission(Manifest.permission.ACCESS_COARSE_LOCATION)){
             fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
-                // Log.i("Create Activity Check Location", "getMyLastLocation: your location in ${location?.latitude} lalitude and ${location?.longitude} logintude")
                 model.setLocation(
                     lon = location?.longitude ?: 0.0,
                     lat = location?.latitude ?: 0.0
