@@ -68,8 +68,11 @@ class ListActivity : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this)
         binding.rvUser.layoutManager = layoutManager
 
+        val adapter = StoryListAdapter()
+        binding.rvUser.adapter = adapter
+
         model.listStory.observe(this){
-            binding.rvUser.adapter = StoryListAdapter(it.listStory)
+            adapter.submitData(lifecycle, it)
         }
     }
 }
