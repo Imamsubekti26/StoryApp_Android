@@ -27,6 +27,17 @@ class CreateViewModel(private val pref: DataStoreRepository): ViewModel() {
 
     fun getToken(): LiveData<String> = pref.getToken().asLiveData()
 
+    private val _location = MutableLiveData<Location>()
+
+    fun setLocation(lon: Double, lat: Double) {
+        _location.postValue(
+            Location(
+                latitude = lat,
+                longitude = lon
+            )
+        )
+    }
+
     fun uploadNewStory(
         token: String,
         description: String,
@@ -35,7 +46,10 @@ class CreateViewModel(private val pref: DataStoreRepository): ViewModel() {
         _status.postValue(CreateStatus.PROGRESS)
 
         val desc = description.toRequestBody("text/plain".toMediaTypeOrNull())
-        apiService.createStory("Bearer $token", desc, photo).enqueue(object : Callback<BasicResponse>{
+        val longitude = if (_location.value?.longitude == 0.0) null else _location.value?.longitude
+        val latitude = if (_location.value?.latitude == 0.0) null else _location.value?.latitude
+
+        apiService.createStory("Bearer $token", desc, photo, latitude, longitude).enqueue(object : Callback<BasicResponse>{
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                 if (response.isSuccessful && !response.body()?.error!!) {
                     _status.postValue(CreateStatus.SUCCESS)
@@ -56,4 +70,9 @@ class CreateViewModel(private val pref: DataStoreRepository): ViewModel() {
         FAILED(400),
         PROGRESS(100)
     }
+
+    data class Location(
+        val latitude: Double,
+        val longitude: Double
+    )
 }

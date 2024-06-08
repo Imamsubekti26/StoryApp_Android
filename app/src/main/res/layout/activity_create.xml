@@ -80,6 +80,18 @@
 
     </ScrollView>
 
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/location_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/location"
+        android:layout_centerInParent="true"
+        app:layout_constraintTop_toBottomOf="@id/image_description"
+        app:layout_constraintStart_toStartOf="@id/image_description"
+        app:layout_constraintEnd_toEndOf="@id/image_description"
+        android:padding="16dp"
+        />
+
     <Button
         android:id="@+id/button_submit_new_story"
         android:layout_width="match_parent"

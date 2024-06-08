@@ -36,8 +36,8 @@ interface ApiService {
         @Header("Authorization") authorization: String,
         @Part("description") description: RequestBody,
         @Part photo: MultipartBody.Part,
-        @Part("lat") latitude: Float? = null,
-        @Part("lon") longitude: Float? = null
+        @Part("lat") latitude: Double? = null,
+        @Part("lon") longitude: Double? = null
     ): Call<BasicResponse>
 
     @GET("stories")
