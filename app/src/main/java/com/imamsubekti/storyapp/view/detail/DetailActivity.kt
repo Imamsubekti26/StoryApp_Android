@@ -11,6 +11,7 @@ import com.imamsubekti.storyapp.ViewModelFactory
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
     private lateinit var model: DetailViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
@@ -31,7 +32,6 @@ class DetailActivity : AppCompatActivity() {
 
     private fun getDetailStory(){
         val storyId = intent.getStringExtra("id_story")
-
         model.getToken().observe(this){
             model.updateDetail(it, storyId as String)
         }

@@ -13,6 +13,7 @@ import com.imamsubekti.storyapp.view.login.LoginActivity
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
     private lateinit var model: RegisterViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
@@ -20,11 +21,11 @@ class RegisterActivity : AppCompatActivity() {
 
         model = ViewModelProvider(this)[RegisterViewModel::class.java]
 
-        setupAction()
-        observeResponse()
+        setupRegisterAction()
+        observeRegisterResponse()
     }
 
-    private fun setupAction() {
+    private fun setupRegisterAction() {
         binding.buttonRegisterSubmit.setOnClickListener {
             model.register(
                 name = binding.nameForm.text.toString(),
@@ -34,7 +35,7 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun observeResponse(){
+    private fun observeRegisterResponse(){
         model.status.observe(this) {
             when(it) {
                 RegisterViewModel.RegisterStatus.SUCCESS -> {

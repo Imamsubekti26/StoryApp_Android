@@ -14,6 +14,7 @@ import com.imamsubekti.storyapp.ViewModelFactory
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var model: LoginViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -21,11 +22,11 @@ class LoginActivity : AppCompatActivity() {
 
         model = ViewModelProvider(this, ViewModelFactory.getInstance(this))[LoginViewModel::class.java]
 
-        setupAction()
-        observeResponse()
+        setupLoginAction()
+        observeLoginResponse()
     }
 
-    private fun setupAction(){
+    private fun setupLoginAction(){
         binding.buttonLoginSubmit.setOnClickListener {
             model.login(
                 email = binding.emailForm.text.toString(),
@@ -34,7 +35,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun observeResponse(){
+    private fun observeLoginResponse(){
         model.status.observe(this){
             when(it) {
                 LoginViewModel.LoginStatus.SUCCESS -> {

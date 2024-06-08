@@ -23,7 +23,6 @@ class CreateActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCreateBinding
     private lateinit var model: CreateViewModel
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private var currentImageUri: Uri? = null
     private var token: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,35 +33,15 @@ class CreateActivity : AppCompatActivity() {
         model = ViewModelProvider(this, ViewModelFactory.getInstance(this))[CreateViewModel::class.java]
 
         setupActionBar()
-
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-
-        binding.locationSwitch.setOnCheckedChangeListener { _, isActive ->
-            if (isActive){
-                getMyLastLocation()
-            } else {
-                model.setLocation(
-                    lon = 0.0,
-                    lat = 0.0
-                )
-                Toast.makeText(this, "Location access disabled", Toast.LENGTH_SHORT).show()
-            }
-        }
+        setupLocation()
 
         binding.galleryButton.setOnClickListener { startGallery() }
+        binding.previewImageView.setOnClickListener { startGallery() }
         binding.buttonSubmitNewStory.setOnClickListener { uploadImage() }
 
-        observeResponse()
+        setupTokenAndImagePreview()
+        observeUploadResponse()
 
-        model.currentImageUri.observe(this){
-            Log.d("Image URI", "showImage: $it")
-            currentImageUri = it
-            binding.previewImageView.setImageURI(it)
-        }
-
-        model.getToken().observe(this){
-            token = it
-        }
     }
 
     private fun setupActionBar(){
@@ -71,7 +50,20 @@ class CreateActivity : AppCompatActivity() {
         binding.toolbar.setNavigationOnClickListener { finish() }
     }
 
-    private fun observeResponse(){
+    private fun setupLocation(){
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
+        binding.locationSwitch.setOnCheckedChangeListener { _, isActive ->
+            if (isActive){
+                getMyLastLocation()
+            } else {
+                model.setLocation(0.0,0.0)
+                Toast.makeText(this, "Location access disabled", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun observeUploadResponse(){
         model.status.observe(this){
             when(it) {
                 CreateViewModel.CreateStatus.SUCCESS -> {
@@ -89,6 +81,16 @@ class CreateActivity : AppCompatActivity() {
         }
     }
 
+    private fun setupTokenAndImagePreview(){
+        model.getToken().observe(this){
+            token = it
+        }
+        model.currentImageUri.observe(this){
+            Log.d("Image URI", "showImage: $it")
+            binding.previewImageView.setImageURI(it)
+        }
+    }
+
     private fun startGallery() {
         launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
     }
@@ -103,15 +105,17 @@ class CreateActivity : AppCompatActivity() {
     }
 
     private fun uploadImage(){
-        if (currentImageUri == null) {
-            Toast.makeText(this, getString(R.string.upload_image_first), Toast.LENGTH_SHORT).show()
-            return
+        model.currentImageUri.observe(this) {
+            if (it == null) {
+                Toast.makeText(this, getString(R.string.upload_image_first), Toast.LENGTH_SHORT).show()
+            } else {
+                model.uploadNewStory(
+                    token = token as String,
+                    description = binding.textDescription.text.toString(),
+                    photo = ImageTransform(this, it).toMultipart()
+                )
+            }
         }
-        model.uploadNewStory(
-            token = token as String,
-            description = binding.textDescription.text.toString(),
-            photo = ImageTransform(this, currentImageUri!!).toMultipart()
-        )
     }
 
     private val launcherLocation =

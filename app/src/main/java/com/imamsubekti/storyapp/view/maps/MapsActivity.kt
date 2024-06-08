@@ -48,11 +48,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
-    private fun renderMapToFragment(){
-        val mapFragment = supportFragmentManager.findFragmentById(R.id.map_fragment) as SupportMapFragment
-        mapFragment.getMapAsync(this)
-    }
-
     private fun setupActionBar(){
         with(binding.toolbar){
             setNavigationOnClickListener { finish() }
@@ -79,6 +74,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
             }
         }
+    }
+
+    private fun renderMapToFragment(){
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.map_fragment) as SupportMapFragment
+        mapFragment.getMapAsync(this)
     }
 
     private fun getStoryList(){

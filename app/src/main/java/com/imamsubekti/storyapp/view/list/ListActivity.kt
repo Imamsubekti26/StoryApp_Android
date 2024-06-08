@@ -52,7 +52,6 @@ class ListActivity : AppCompatActivity() {
                 }
                 else -> false
             }
-
         }
     }
 
