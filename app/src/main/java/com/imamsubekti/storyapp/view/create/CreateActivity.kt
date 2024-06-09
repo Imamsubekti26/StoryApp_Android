@@ -109,6 +109,7 @@ class CreateActivity : AppCompatActivity() {
             if (it == null) {
                 Toast.makeText(this, getString(R.string.upload_image_first), Toast.LENGTH_SHORT).show()
             } else {
+                binding.buttonSubmitNewStory.text = getString(R.string.loading)
                 model.uploadNewStory(
                     token = token as String,
                     description = binding.textDescription.text.toString(),
