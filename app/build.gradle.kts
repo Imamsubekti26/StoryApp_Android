@@ -49,20 +49,31 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.androidx.paging.runtime.ktx)
+
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
+
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.logging.interceptor)
     implementation(libs.glide)
+    implementation(libs.retrofit2.kotlin.coroutines.adapter)
+
     implementation(libs.play.services.maps)
     implementation(libs.play.services.location)
-    implementation(libs.retrofit2.kotlin.coroutines.adapter)
+    implementation(libs.androidx.junit.ktx)
+
     testImplementation(libs.junit)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.inline)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.androidx.core.testing)
+
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }
