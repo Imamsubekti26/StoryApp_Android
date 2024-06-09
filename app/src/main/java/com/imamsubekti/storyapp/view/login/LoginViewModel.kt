@@ -6,15 +6,17 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.imamsubekti.storyapp.entity.LoginRequest
 import com.imamsubekti.storyapp.entity.LoginResponse
-import com.imamsubekti.storyapp.network.ApiConfig
+import com.imamsubekti.storyapp.network.ApiService
 import com.imamsubekti.storyapp.repository.DataStoreRepository
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class LoginViewModel(private val pref: DataStoreRepository): ViewModel() {
-    private val apiService = ApiConfig.getApiService()
+class LoginViewModel(
+    private val pref: DataStoreRepository,
+    private val apiService: ApiService
+): ViewModel() {
 
     private val _status = MutableLiveData<LoginStatus>()
     val status: LiveData<LoginStatus> get() = _status

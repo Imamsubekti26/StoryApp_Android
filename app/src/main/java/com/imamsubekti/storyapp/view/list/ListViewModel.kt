@@ -8,13 +8,16 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.imamsubekti.storyapp.entity.Story
-import com.imamsubekti.storyapp.network.ApiConfig
+import com.imamsubekti.storyapp.network.ApiService
 import com.imamsubekti.storyapp.repository.DataStoreRepository
 import com.imamsubekti.storyapp.repository.StoryRepository
 import kotlinx.coroutines.launch
 
-class ListViewModel(private val pref: DataStoreRepository): ViewModel() {
-    private val apiService = ApiConfig.getApiService()
+class ListViewModel(
+    private val pref: DataStoreRepository,
+    private val apiService: ApiService,
+    private val storyRepository: StoryRepository
+): ViewModel() {
 
     private val _listStory = MutableLiveData<PagingData<Story>>()
     val listStory:LiveData<PagingData<Story>> get() = _listStory
@@ -33,7 +36,7 @@ class ListViewModel(private val pref: DataStoreRepository): ViewModel() {
     }
 
     fun updateList(token: String){
-        val data = StoryRepository().getStory(apiService, "Bearer $token")
+        val data = storyRepository.getStory(apiService, "Bearer $token")
 
         data.cachedIn(viewModelScope).observeForever {
             _listStory.postValue(it)

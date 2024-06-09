@@ -5,14 +5,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.imamsubekti.storyapp.entity.DetailStoryResponse
-import com.imamsubekti.storyapp.network.ApiConfig
+import com.imamsubekti.storyapp.network.ApiService
 import com.imamsubekti.storyapp.repository.DataStoreRepository
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DetailViewModel(private val pref: DataStoreRepository): ViewModel() {
-    private val apiService = ApiConfig.getApiService()
+class DetailViewModel(
+    private val pref: DataStoreRepository,
+    private val apiService : ApiService
+): ViewModel() {
 
     private val _storyDetail = MutableLiveData<DetailStoryResponse>()
     val storyDetail: LiveData<DetailStoryResponse> get() = _storyDetail
